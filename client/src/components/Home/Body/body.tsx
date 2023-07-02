@@ -28,7 +28,7 @@ const Body = () => {
         const getAllDocuments = async () => {
             try {
                 const token = localStorage.getItem("token");
-                const res = await axios.get("http://localhost:3000/api/v1/document/getYourDocuments", { headers: { authorisation: `Bearer ${token}` } });
+                const res = await axios.get(`${import.meta.env.VITE_APP_URL_LOCAL}/api/v1/document/getYourDocuments`, { headers: { authorisation: `Bearer ${token}` } });
                 setDocuments(res.data.data);
                 console.log(res.data);
             } catch (err: any) {
@@ -52,7 +52,7 @@ const Body = () => {
         setLoading(true);
         try {
             const token = localStorage.getItem("token");
-            const res = await axios.post("http://localhost:3000/api/v1/document/create", { name: documentName, accessibility: documentAccessibility }, { headers: { authorisation: `Bearer ${token}` } });
+            const res = await axios.post(`${import.meta.env.VITE_APP_URL_LOCAL}/api/v1/document/create`, { name: documentName, accessibility: documentAccessibility }, { headers: { authorisation: `Bearer ${token}` } });
             console.log(res.data);
             setOpen(false);
             setLoading(false);

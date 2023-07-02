@@ -11,7 +11,7 @@ const Navbar = () => {
         const token = localStorage.getItem("token");
         const logoutFunc = async () => {
             try {
-                const res = await axios.get(`http://localhost:3000/api/v1/users/logout`, { headers: { authorisation: `Bearer ${token}` } })
+                const res = await axios.get(`${import.meta.env.VITE_APP_URL_LOCAL}/api/v1/users/logout`, { headers: { authorisation: `Bearer ${token}` } })
                 console.log(res.data);
                 auth.setUser(null);
                 localStorage.removeItem("token");
@@ -29,7 +29,7 @@ const Navbar = () => {
                     <p className="text-[#FFFFFF] text-[30px] font-serif"><b>Collab Buddy</b></p>
                 </div>
                 <div className  = "mr-auto">
-                <button className  = "ml-[4rem] text-white bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"  onClick = {()=>{
+                <button className  = "ml-[4rem] text-white bg-blue-500 hover:bg-blue-700  font-bold py-2 px-4 border border-blue-700 rounded"  onClick = {()=>{
                     navigate('/room/')
                     window.location.reload();
                     }}>Start Video Call</button>

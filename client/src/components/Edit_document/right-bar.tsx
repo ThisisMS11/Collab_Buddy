@@ -1,4 +1,4 @@
-import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Chats from "./RightBar/chats";
 import { useDocument } from "../../contexts/document";
@@ -23,12 +23,12 @@ const RightBar = ({ onlineUsers }: { onlineUsers: any }) => {
         if (title == "") {
             setShow(false);
             return;
-        } us
+        } 
         const token = localStorage.getItem("token");
         setLoading(true);
         const editTitleFunc = async () => {
             try {
-                const res = await axios.put(`http://localhost:3000/api/v1/document/editName/${doc.document._id}`, { name: title }, { headers: { authorisation: `Bearer ${token}` } })
+                const res = await axios.put(`${import.meta.env.VITE_APP_URL_LOCAL}/api/v1/document/editName/${doc.document._id}`, { name: title }, { headers: { authorisation: `Bearer ${token}` } })
                 console.log(res.data);
                 doc.setDocument(res.data.data);
                 setShow(false);
@@ -46,7 +46,7 @@ const RightBar = ({ onlineUsers }: { onlineUsers: any }) => {
         const token = localStorage.getItem("token");
         const removeEditorFunc = async () => {
             try {
-                const res = await axios.put(`http://localhost:3000/api/v1/document/removeEditor/${doc.document._id}`, { editor: editor },
+                const res = await axios.put(`${import.meta.env.VITE_APP_URL_LOCAL}/api/v1/document/removeEditor/${doc.document._id}`, { editor: editor },
                     { headers: { authorisation: `Bearer ${token}` } })
                 console.log(res.data);
                 doc.setDocument(res.data.data);
@@ -71,14 +71,14 @@ const RightBar = ({ onlineUsers }: { onlineUsers: any }) => {
                 {show == true && loading == true && <button disabled className="text-center flex justify-center items-center w-[60px] h-[30px] rounded-md bg-[#CCCCCC] text-[#FFFFFF] ">Save</button>}
             </div>
             <div className="flex items-center mt-10">
-                <FontAwesomeIcon icon={faChevronUp} className='text-[20px] text-[#2F2E2E] mr-5 text-[20px] cursor-pointer' />
+                <FontAwesomeIcon icon={faChevronUp} className=' text-[#2F2E2E] mr-5 text-[20px] cursor-pointer' />
                 <p className="text-[20px]">Comments</p>
             </div>
             <Chats />
 
             <div className="flex  mt-10 flex-col">
                 <div className="flex">
-                    <FontAwesomeIcon icon={faChevronUp} className='text-[20px] text-[#2F2E2E] mr-5 text-[20px] cursor-pointer' />
+                    <FontAwesomeIcon icon={faChevronUp} className=' text-[#2F2E2E] mr-5 text-[20px] cursor-pointer' />
                     <p className="text-[20px] ">Online collabarators</p>
                 </div>
 
@@ -99,7 +99,7 @@ const RightBar = ({ onlineUsers }: { onlineUsers: any }) => {
                         style={{
                             transition: 'transform 0.5s ease',
                         }}
-                        className={`text-[20px] text-[#2F2E2E] mr-5 text-[20px] cursor-pointer ${showCollabarator ? 'transform rotate-180 ' : ''}`} />
+                        className={`text-[20px] text-[#2F2E2E] mr-5  cursor-pointer ${showCollabarator ? 'transform rotate-180 ' : ''}`} />
 
 
                     <p className="text-[20px]">Collabarators</p>
@@ -118,7 +118,7 @@ const RightBar = ({ onlineUsers }: { onlineUsers: any }) => {
 
             </div>
             <div className="flex items-center mt-10">
-                <FontAwesomeIcon icon={faChevronUp} className='text-[20px] text-[#2F2E2E] mr-5 text-[20px] cursor-pointer' />
+                <FontAwesomeIcon icon={faChevronUp} className='text-[20px] text-[#2F2E2E] mr-5 cursor-pointer' />
                 <p className="text-[20px]">History</p>
             </div>
         </div>

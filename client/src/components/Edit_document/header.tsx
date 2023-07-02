@@ -42,7 +42,7 @@ const Header = () => {
                         return;
                     }
                     setLoading(true);
-                    const res = await axios.put(`http://localhost:3000/api/v1/document/addViewer/${doc.document._id}`, { viewer: email }, { headers: { authorisation: `Bearer ${token}` } });
+                    const res = await axios.put(`${import.meta.env.VITE_APP_URL_LOCAL}/api/v1/document/addViewer/${doc.document._id}`, { viewer: email }, { headers: { authorisation: `Bearer ${token}` } });
                     console.log(res.data);
                     doc.setDocument(res.data.data);
                     setOpen(false);
@@ -53,7 +53,7 @@ const Header = () => {
                         return;
                     }
                     setLoading(true);
-                    const res = await axios.put(`http://localhost:3000/api/v1/document/addEditor/${doc.document._id}`, { editor: email }, { headers: { authorisation: `Bearer ${token}` } });
+                    const res = await axios.put(`${import.meta.env.VITE_APP_URL_LOCAL}/api/v1/document/addEditor/${doc.document._id}`, { editor: email }, { headers: { authorisation: `Bearer ${token}` } });
                     console.log(res.data);
                     doc.setDocument(res.data.data);
                     setOpen(false);

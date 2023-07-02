@@ -20,7 +20,7 @@ const Edit_document_source = () => {
     useEffect(() => {
         const getDocument = async (id: string | undefined) => {
             try {
-                const res = await axios.get(`http://localhost:3000/api/v1/document/getDocument/${id}`, {
+                const res = await axios.get(`${import.meta.env.VITE_APP_URL_LOCAL}/api/v1/document/getDocument/${id}`, {
                     headers: {
                         "Content-Type": "application/json",
                         authorisation: `Bearer ${localStorage.getItem("token")}`,

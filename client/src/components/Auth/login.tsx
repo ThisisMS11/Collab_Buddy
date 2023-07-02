@@ -49,10 +49,10 @@ const Login=()=>{
     const loginHandler=async()=>{
         setLoading(true);
         try{
-            const res=await axios.post("http://localhost:3000/api/v1/users/login",{email,password})
+            const res=await axios.post(`${import.meta.env.VITE_APP_URL_LOCAL}/api/v1/users/login`,{email,password})
             console.log(res.data)
             localStorage.setItem("token",res.data.token);
-            const user=await axios.get("http://localhost:3000/api/v1/users/me",{headers:{authorisation:`Bearer ${res.data.token}`}})
+            const user=await axios.get(`${import.meta.env.VITE_APP_URL_LOCAL}/api/v1/users/me`,{headers:{authorisation:`Bearer ${res.data.token}`}})
             auth.setUser(user.data);
             navigate(redirectPath, { replace: true });
             setLoading(false);
