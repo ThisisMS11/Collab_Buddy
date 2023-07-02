@@ -1,7 +1,7 @@
 const User = require('../modals/users');
 const errorResponse = require('../utils/errorHandler');
 const asyncHandler = require('../middleware/asyncHandler');
-const bcrypt= require('bcrypt');
+const bcrypt= require('bcryptjs');
 
 exports.login = asyncHandler(async (req, res, next) => {
     const { email, password } = req.body;
